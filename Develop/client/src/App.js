@@ -4,6 +4,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
+import { setContext } from '@apollo/client/link/context';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
