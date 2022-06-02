@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
-import { setContext } from '@apollo/client/link/context';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -32,11 +32,11 @@ function App() {
       <Router>
         <>
           <Navbar />
-          <Switch>
+          <Routes>
             <Route exact path='/' component={SearchBooks} />
             <Route exact path='/saved' component={SavedBooks} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
-          </Switch>
+          </Routes>
         </>
       </Router>
     </ApolloProvider>
